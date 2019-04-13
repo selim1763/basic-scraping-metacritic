@@ -17,7 +17,7 @@ page_start = 0
 page_end = 10
 
 for i in range(page_start,page_end):
-    print("Scraping Page {} - {} Pages Left".format(i, page_end - (page_start+1)))
+    print("Scraping Page {} - {} Pages Left".format(i, page_end - (i+1)))
     #
     links= []
     metacritic = metacritic_base+str(i)
