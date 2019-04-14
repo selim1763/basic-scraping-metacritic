@@ -1,6 +1,7 @@
 import urllib.request
 import csv
 import os
+import time
 from bs4 import BeautifulSoup
 from user_agent import generate_user_agent
 
@@ -14,10 +15,10 @@ metacritic_base = "http://www.metacritic.com/browse/games/release-date/available
 hdr= {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 'User-Agent': generate_user_agent(device_type="desktop", os=('mac', 'linux', 'win'))}
 
 page_start = 0
-page_end = 10
+page_end = 40
 
 for i in range(page_start,page_end):
-    print("Scraping Page {} - {} Pages Left".format(i, page_end - (page_start+1)))
+    print("Scraping Page {} - {} Pages Left".format(i, page_end - (i+1)))
     #
     links= []
     metacritic = metacritic_base+str(i)
@@ -39,5 +40,7 @@ for i in range(page_start,page_end):
         writer = csv.writer(output, lineterminator='\n')
         for val in links:
             writer.writerow([val])
+
+    time.sleep(1)
 #
 print("Im done.")
